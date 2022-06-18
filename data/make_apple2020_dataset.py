@@ -1,5 +1,5 @@
 """
-download dataset from https://www.kaggle.com/competitions/cassava-leaf-disease-classification/data
+download dataset from https://www.kaggle.com/competitions/plant-pathology-2020-fgvc7/data
 step 1: make every class from train.csv
 step 2: make train, val, and test dataset
     setting 1: 20%, 20%, 20% (remain images are not used)
@@ -23,15 +23,16 @@ from tqdm import tqdm
 
 
 ###### please rewrite the following directory
-abs_source_dir = "/data/Mingle/DATASETS/Cassava/"
-abs_target_dir = "/data/Mingle/DATASETS_after/cassava/all"
+abs_source_dir = "/data/Mingle/DATASETS/Apple2020/"
+abs_target_dir = "/data/Mingle/DATASETS_after/Apple2020/all"
 
 ###### please do NOT change the following codes
 ###### But you can block some parts
 file_name = osp.join(abs_source_dir, "train.csv")
 meta_data = pd.read_csv(file_name, header=0)
 values = meta_data.values
-label_names = np.unique(values.T[1])
+label_names = meta_data.columns.to_list()[1:]
+labels = np.argmax(values[:, 1:], axis=1)
 
 # use seed to reproduce the data split
 np.random.seed(15)
@@ -45,10 +46,10 @@ for label in label_names:
 
 for i in tqdm(range(values.shape[0])):
     img_name = values[i][0]
-    label = values[i][1]
+    label = label_names[labels[i]]
 
-    abs_src_name = osp.join(abs_source_dir, "train_images", img_name)
-    abs_tgt_name = osp.join(abs_target_dir, str(label), img_name)
+    abs_src_name = osp.join(abs_source_dir, "images", img_name + '.jpg')
+    abs_tgt_name = osp.join(abs_target_dir, str(label), img_name + '.jpg')
 
     shutil.copyfile(abs_src_name, abs_tgt_name)
 
@@ -123,8 +124,8 @@ for i in range(len(few_shot)):
 
     # copy images for each label
     for label in label_names:
-        print(source_dir)
         src_label_dir = osp.join(source_dir, str(label))
+        print(src_label_dir)
         img_list = sorted(os.listdir(src_label_dir))
         num_img = int(len(img_list) * all_ratio / 100.0)
         random_perm = np.random.permutation(num_img + shots)

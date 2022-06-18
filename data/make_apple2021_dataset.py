@@ -1,5 +1,5 @@
 """
-download dataset from https://www.kaggle.com/competitions/cassava-leaf-disease-classification/data
+download dataset from https://www.kaggle.com/competitions/plant-pathology-2021-fgvc8/data
 step 1: make every class from train.csv
 step 2: make train, val, and test dataset
     setting 1: 20%, 20%, 20% (remain images are not used)
@@ -23,15 +23,21 @@ from tqdm import tqdm
 
 
 ###### please rewrite the following directory
-abs_source_dir = "/data/Mingle/DATASETS/Cassava/"
-abs_target_dir = "/data/Mingle/DATASETS_after/cassava/all"
+abs_source_dir = "/data/Mingle/DATASETS/Apple2021/"
+abs_target_dir = "/data/Mingle/DATASETS_after/Apple2021/all"
 
 ###### please do NOT change the following codes
 ###### But you can block some parts
 file_name = osp.join(abs_source_dir, "train.csv")
 meta_data = pd.read_csv(file_name, header=0)
 values = meta_data.values
+for i in range(len(values)):
+    if "complex" in values[i][1]:
+        values[i][1] = 'complex'
+    if " " in values[i][1]:
+        values[i][1] = 'complex'
 label_names = np.unique(values.T[1])
+
 
 # use seed to reproduce the data split
 np.random.seed(15)
