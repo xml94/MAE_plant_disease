@@ -3,7 +3,7 @@
 #  cassava
 ##########################
 export epoch=400
-export dataset="train20_val20_test20"
+export dataset="train60_val20_test20"
 export name="cassava_PlantCLEF2022_${dataset}"
 export batch=32
 export IMAGENET_DIR="/home/oem/Mingle/datasets/cassava/${dataset}"
