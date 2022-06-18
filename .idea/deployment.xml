@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="51" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="51" remoteFilesAllowedToDisappearOnAutoupload="false" showAutoUploadSettingsWarning="false">
     <serverData>
       <paths name="51">
         <serverdata>
           <mappings>
             <mapping deploy="/home/oem/Mingle/MAE" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="oem@113.198.60.51:10022">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_815" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
