@@ -330,7 +330,7 @@ def main(args):
             log_writer=log_writer,
             args=args
         )
-        if args.output_dir and epoch % args.save_model_epoch == 0:
+        if args.output_dir and epoch % args.save_model_epoch == 0 and epoch != 0:
             misc.save_model(
                 args=args, model=model, model_without_ddp=model_without_ddp, optimizer=optimizer,
                 loss_scaler=loss_scaler, epoch=epoch)
@@ -338,7 +338,12 @@ def main(args):
         if epoch % args.eval_epoch == 0:
             test_stats = evaluate(data_loader_val, model, device)
             print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
-            max_accuracy = max(max_accuracy, test_stats["acc1"])
+            if test_stats["acc1"] > max_accuracy:
+                max_accuracy = test_stats["acc1"]
+                misc.save_model(
+                    args=args, model=model, model_without_ddp=model_without_ddp, optimizer=optimizer,
+                    loss_scaler=loss_scaler, epoch='best')
+
             print(f'Max accuracy: {max_accuracy:.2f}%')
 
             if log_writer is not None:
