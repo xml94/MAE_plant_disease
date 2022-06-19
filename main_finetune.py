@@ -54,6 +54,9 @@ def get_args_parser():
     parser.add_argument('--accum_iter', default=1, type=int,
                         help='Accumulate gradient iterations (for increasing the effective batch size under memory constraints)')
 
+    parser.add_argument('--test_mode', type=str, default='val', choices=['val', 'test'],
+                        help='to use test dataset')
+
     parser.add_argument('--visualize_epoch', type=int, default=0, help='if save the classification results for which epoch')
     parser.add_argument('--save_model_epoch', type=int, default=1, help='how many epochs to save model')
     parser.add_argument('--max_num', type=int, default=1, help='how many top predict you want to save')
