@@ -2,7 +2,7 @@
 #  Apple2020
 ##########################
 export dataset_mode="train20_val20_test20"
-export name="Apple2020_${dataset_mode}_finetune_PlantCLEF2022"
+export name="Apple2020_${dataset_mode}_finetune_MAE"
 export num_label=4
 export IMAGENET_DIR="/home/oem/Mingle/datasets/Apple2020/${dataset_mode}"
 export test_epoch=best

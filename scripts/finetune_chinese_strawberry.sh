@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export dataset='CitrusLeaf'
+export dataset='ChineseStrawberry'
 export num_label=4
 export batch=16
 export epoch=50

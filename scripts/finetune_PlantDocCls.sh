@@ -3,7 +3,7 @@
 
 export dataset='PlantDoc_cls'
 export num_label=27
-export batch=32
+export batch=16
 export epoch=50
 export accum_iter=1
 export save_model_epoch=50
