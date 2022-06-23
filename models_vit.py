@@ -31,8 +31,6 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
 
             del self.norm  # remove the original norm
 
-        # self.shared_mean = nn.Parameter(torch.randn())
-
     def forward_features(self, x):
         B = x.shape[0]
         x = self.patch_embed(x)

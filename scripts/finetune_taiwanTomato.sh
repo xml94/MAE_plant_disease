@@ -3,14 +3,14 @@
 
 export dataset='TaiwanTomato'
 export num_label=6
-export batch=32
+export batch=16
 export epoch=50
 export accum_iter=1
 export save_model_epoch=50
 ##########################
 #  PlantCLEF2022
 ##########################
-for dataset_split in "train20_val20_test20" "train40_val20_test20" "train60_val20_test20" "train80_val10_test10"
+for dataset_split in "train20_val20" "train40_val20" "train60_val20" "train80_val20"
 do
   export name="${dataset}_${dataset_split}_finetune_PlantCLEF2022"
   export batch=${batch}
@@ -36,7 +36,7 @@ done
 ##########################
 #  MAE
 ##########################
-for dataset_split in "train20_val20_test20" "train40_val20_test20" "train60_val20_test20" "train80_val10_test10"
+for dataset_split in "train20_val20" "train40_val20" "train60_val20" "train80_val20"
 do
   export name="${dataset}_${dataset_split}_finetune_MAE"
   export batch=${batch}

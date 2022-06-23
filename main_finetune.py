@@ -56,7 +56,6 @@ def get_args_parser():
 
     parser.add_argument('--test_mode', type=str, default='val', choices=['val', 'test'],
                         help='to use test dataset')
-
     parser.add_argument('--visualize_epoch', type=int, default=0, help='if save the classification results for which epoch')
     parser.add_argument('--save_model_epoch', type=int, default=1, help='how many epochs to save model')
     parser.add_argument('--max_num', type=int, default=1, help='how many top predict you want to save')
@@ -277,7 +276,7 @@ def main(args):
     model_without_ddp = model
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-    print("Model = %s" % str(model_without_ddp))
+    # print("Model = %s" % str(model_without_ddp))
     print('number of params (M): %.2f' % (n_parameters / 1.e6))
 
     eff_batch_size = args.batch_size * args.accum_iter * misc.get_world_size()

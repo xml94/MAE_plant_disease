@@ -22,8 +22,12 @@ def build_dataset(is_train, args):
 
     if args.test_mode == 'val':
         root = os.path.join(args.data_path, 'train' if is_train else 'val')
+        if not is_train:
+            print("INFO: using val folder")
     else:
         root = os.path.join(args.data_path, 'train' if is_train else 'test')
+        if not is_train:
+            print("INFO: using test folder")
     dataset = datasets.ImageFolder(root, transform=transform)
 
     print(dataset)
