@@ -40,6 +40,10 @@ np.random.seed(15)
 ####################################################################
 # step 1: make all datasets for each class
 ####################################################################
+temp_dir = abs_target_dir.replace('all', '')
+if osp.exists(temp_dir):
+    shutil.rmtree(temp_dir)
+os.makedirs(temp_dir)
 for label in label_names:
     abs_dir = osp.join(abs_target_dir, str(label))
     os.makedirs(abs_dir, exist_ok=True)
@@ -68,7 +72,7 @@ for i in range(len(train_ratio)):
     test_ratio_ = test_ratio[i]
     print(f"\nStarting: train: {train_ratio_}, val: {val_ratio_}, test: {test_ratio_}")
     all_ratio = train_ratio_ + val_ratio_ + test_ratio_
-    file_dir = f"train{train_ratio_}_val{val_ratio_}_test{test_ratio_}"
+    file_dir = f"train{train_ratio_}"
     target_dir = osp.join(source_dir.replace('all', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 
@@ -111,7 +115,7 @@ for i in range(len(few_shot)):
     test_ratio_ = test_ratio[i]
     print(f"\nStarting: train: {shots} shot, val: {val_ratio_}%, test: {test_ratio_}%")
     all_ratio = val_ratio_ + test_ratio_
-    file_dir = f"train{shots}shot_val{val_ratio_}_test{test_ratio_}"
+    file_dir = f"train{shots}shot"
     target_dir = osp.join(source_dir.replace('all', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 

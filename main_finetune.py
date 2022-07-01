@@ -245,7 +245,7 @@ def main(args):
         global_pool=args.global_pool,
     )
 
-    if args.finetune and not args.eval:
+    if args.finetune.lower() != "none" and not args.eval:
         checkpoint = torch.load(args.finetune, map_location='cpu')
 
         print("Load pre-trained checkpoint from: %s" % args.finetune)

@@ -30,7 +30,7 @@ from PIL import Image
 abs_source_dir = "/data/Mingle/DATASETS/IVADL_tomato"
 abs_target_dir = "/data/Mingle/DATASETS_after/IVADL_tomato/all"
 osize = (520, 520)
-max_num = 480
+max_num = 520
 label_names = os.listdir(abs_source_dir)
 
 ###### please do NOT change the following codes
@@ -81,7 +81,7 @@ for i in range(len(train_ratio)):
     test_ratio_ = test_ratio[i]
     print(f"\nStarting: train: {train_ratio_}, val: {val_ratio_}, test: {test_ratio_}")
     all_ratio = train_ratio_ + val_ratio_ + test_ratio_
-    file_dir = f"train{train_ratio_}_val{val_ratio_}_test{test_ratio_}"
+    file_dir = f"train{train_ratio_}"
     target_dir = osp.join(source_dir.replace('all', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 
@@ -124,7 +124,7 @@ for i in range(len(few_shot)):
     test_ratio_ = test_ratio[i]
     print(f"\nStarting: train: {shots} shot, val: {val_ratio_}%, test: {test_ratio_}%")
     all_ratio = val_ratio_ + test_ratio_
-    file_dir = f"train{shots}shot_val{val_ratio_}_test{test_ratio_}"
+    file_dir = f"train{shots}shot"
     target_dir = osp.join(source_dir.replace('all', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 

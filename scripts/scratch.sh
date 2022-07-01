@@ -1,0 +1,13 @@
+sh scripts/scratch_apple2020.sh
+sh scripts/scratch_apple2021.sh
+sh scripts/scratch_CGIAR_wheat.sh
+sh scripts/scratch_chinese_strawberry.sh
+sh scripts/scratch_CitrusLeaf.sh
+sh scripts/scratch_cssava.sh
+sh scripts/scratch_IVADL_rose.sh
+sh scripts/scratch_IVADL_tomato.sh
+sh scripts/scratch_plantDoc.sh
+sh scripts/scratch_plantvilliage.sh
+sh scripts/scratch_rice1462.sh
+sh scripts/scratch_Rice2020.sh
+sh scripts/scratch_taiwanTomato.sh

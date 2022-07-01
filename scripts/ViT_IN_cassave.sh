@@ -1,18 +1,16 @@
 #!/bin/bash
-
-
-export dataset='PlantDoc_cls'
-export num_label=27
+export dataset='cassava'
+export num_label=5
 export batch=32
-export epoch=50
+export epoch=200
 export accum_iter=1
-export save_model_epoch=50
+export save_model_epoch=5000
 ##########################
 #  PlantCLEF2022
 ##########################
-for dataset_split in "train20_val20" "train40_val20" "train60_val20" "train80_val10"
+for dataset_split in "train20_val20_test20" "train40_val20_test20" "train60_val20_test20" "train80_val10_test10"
 do
-  export name="${dataset}_${dataset_split}_finetune_PlantCLEF2022"
+  export name="${dataset}_${dataset_split}_vit_IN"
   export batch=${batch}
   export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
   export PRETRAIN_CHKPT='./ckpt/PlantCLEF2022_MAE_vit_large_patch16.pth'
@@ -36,9 +34,9 @@ done
 ##########################
 #  MAE
 ##########################
-for dataset_split in "train20_val20" "train40_val20" "train60_val20" "train80_val10"
+for dataset_split in "train20_val20_test20" "train40_val20_test20" "train60_val20_test20" "train80_val10_test10"
 do
-  export name="${dataset}_${dataset_split}_finetune_MAE"
+  export name="${dataset}_${dataset_split}_vit_IN"
   export batch=${batch}
   export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
   export PRETRAIN_CHKPT='./ckpt/mae_pretrain_vit_large.pth'
