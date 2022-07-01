@@ -1,5 +1,5 @@
 """
-download dataset from https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color
+download dataset from https://drive.google.com/drive/folders/1ewBesJcguriVTX8sRJseCDbXAF_T4akK
 step 1:
 step 2: make train, val, and test dataset
     setting 1: 20%, 20%, 20% (remain images are not used)
@@ -24,8 +24,8 @@ import subprocess
 
 
 ###### please rewrite the following directory
-abs_source_dir = "/data/Mingle/DATASETS/PlantVillage-Dataset/tree/master/raw/color"
-abs_target_dir = "/data/Mingle/DATASETS_after/PlantVillage/all"
+abs_source_dir = "/data/Mingle/DATASETS/Rice1462/"
+abs_target_dir = "/data/Mingle/DATASETS_after/Rice1462/all"
 
 ###### please do NOT change the following codes
 ###### But you can block some parts

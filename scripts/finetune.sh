@@ -11,3 +11,6 @@
 
 #sh scripts/finetune_PlantDocCls.sh
 #sh scripts/finetune_taiwanTomato.sh
+
+sh scripts/finetune_CGIAR_wheat.sh
+#sh scripts/finetune_rice1462.sh

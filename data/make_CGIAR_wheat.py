@@ -1,5 +1,5 @@
 """
-download dataset from https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color
+download dataset from https://www.kaggle.com/datasets/shadabhussain/cgiar-computer-vision-for-crop-disease?resource=download
 step 1:
 step 2: make train, val, and test dataset
     setting 1: 20%, 20%, 20% (remain images are not used)
@@ -24,8 +24,8 @@ import subprocess
 
 
 ###### please rewrite the following directory
-abs_source_dir = "/data/Mingle/DATASETS/PlantVillage-Dataset/tree/master/raw/color"
-abs_target_dir = "/data/Mingle/DATASETS_after/PlantVillage/all"
+abs_source_dir = "/data/Mingle/DATASETS/CGIAR_wheat/"
+abs_target_dir = "/data/Mingle/DATASETS_after/CGIAR_wheat/all"
 
 ###### please do NOT change the following codes
 ###### But you can block some parts
@@ -84,7 +84,7 @@ for i in range(len(train_ratio)):
             else:
                 dataset_ = 'test'
             abs_src_img_name = osp.join(src_label_dir, img_list[num])
-            abs_tgt_img_name = osp.join(target_dir, dataset_, str(label), img_list[num])
+            abs_tgt_img_name = osp.join(target_dir, dataset_, str(label), img_list[num].replace('.jfif', '.jpg'))
             shutil.copyfile(abs_src_img_name, abs_tgt_img_name)
 
 ####################################################################
@@ -128,5 +128,5 @@ for i in range(len(few_shot)):
             else:
                 dataset_ = 'test'
             abs_src_img_name = osp.join(src_label_dir, img_list[num])
-            abs_tgt_img_name = osp.join(target_dir, dataset_, str(label), img_list[num])
+            abs_tgt_img_name = osp.join(target_dir, dataset_, str(label), img_list[num].replace('.jfif', '.jpg'))
             shutil.copyfile(abs_src_img_name, abs_tgt_img_name)

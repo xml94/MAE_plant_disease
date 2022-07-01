@@ -1,0 +1,5 @@
+_BASE_: "./finetune_base.yaml"
+DATASET:
+  dataset: "cassava"
+  num_label: 5
+  batch: 32
