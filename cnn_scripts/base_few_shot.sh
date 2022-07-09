@@ -2,45 +2,36 @@
 dataset=$1
 num_label=$2
 batch=$3
+gpu=$4
 
-export gpu=0,1,2,3
 export save_model_epoch=500
 
-for mode in "ViT" "ViT_IN" "MAE_IN" "MAE_CLEF"
+for mode in "MOCO" "CNN" "CNN_super"
 do
-  if [ $mode = "ViT" ]
+  if [ $mode = "CNN" ]
   then
     PRETRAIN_CHKPT='None'
     export epoch=200
     export eval_epoch=10
   fi
-  if [ $mode = "ViT_IN" ]
+  if [ $mode = "CNN_super" ]
   then
     export PRETRAIN_CHKPT='./ckpt/L_16_imagenet1k.pth'
     export epoch=200
     export eval_epoch=10
   fi
-  if [ $mode = "MAE_IN" ]
+  if [ $mode = "MOCO" ]
   then
-    export PRETRAIN_CHKPT='./ckpt/mae_pretrain_vit_large.pth'
-    export epoch=50
-    export eval_epoch=5
-  fi
-  if [ $mode = "MAE_CLEF" ]
-  then
-    export PRETRAIN_CHKPT='./ckpt/PlantCLEF2022_MAE_vit_large_patch16.pth'
     export epoch=50
     export eval_epoch=5
   fi
 
-  for dataset_split in "train20" "train40" "train60" "train80"
+  for dataset_split in "train1shot" "train5shot" "train10shot" "train20shot"
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
-    CUDA_VISIBLE_DEVICES=${gpu} python -m torch.distributed.launch --nproc_per_node=4 main_finetune.py \
-        --accum_iter 1 \
+    CUDA_VISIBLE_DEVICES=${gpu} python cnn_finetune.py \
         --batch_size ${batch} \
-        --finetune ${PRETRAIN_CHKPT} \
         --epochs ${epoch} \
         --blr 1e-3 --layer_decay 0.75 \
         --weight_decay 0.05 --drop_path 0.2 --mixup 0.8 --cutmix 1.0 --reprob 0.25 \

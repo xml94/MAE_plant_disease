@@ -16,6 +16,7 @@ import numpy as np
 import os
 import time
 from pathlib import Path
+import torch.nn as nn
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -33,14 +34,15 @@ import util.misc as misc
 from util.datasets import build_dataset
 from util.pos_embed import interpolate_pos_embed
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
-
-import models_vit
+import torchvision.models as models
 
 from engine_finetune import train_one_epoch, evaluate
 from PIL import ImageFile
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 import warnings
+
 warnings.filterwarnings('ignore', '.*do not.*')
 warnings.warn('DelftStack')
 warnings.warn('Do not show this message')
@@ -56,14 +58,15 @@ def get_args_parser():
 
     parser.add_argument('--test_mode', type=str, default='val', choices=['val', 'test'],
                         help='to use test dataset')
-    parser.add_argument('--mode', type=str, default='MAE', choices=['ViT', 'ViT_IN', 'MAE_IN', 'MAE_CLEF'],
+    parser.add_argument('--mode', type=str, default='CNN', choices=['CNN', 'CNN_super', 'MOCO'],
                         help='the pretrained model')
-    parser.add_argument('--visualize_epoch', type=int, default=0, help='if save the classification results for which epoch')
+    parser.add_argument('--visualize_epoch', type=int, default=0,
+                        help='if save the classification results for which epoch')
     parser.add_argument('--save_model_epoch', type=int, default=1, help='how many epochs to save model')
     parser.add_argument('--max_num', type=int, default=1, help='how many top predict you want to save')
 
     # Model parameters
-    parser.add_argument('--model', default='vit_large_patch16', type=str, metavar='MODEL',
+    parser.add_argument('--model', default='resnet50', type=str, metavar='MODEL',
                         help='Name of model to train')
 
     parser.add_argument('--input_size', default=224, type=int,
@@ -154,7 +157,7 @@ def get_args_parser():
                         help='Perform evaluation only')
     parser.add_argument('--dist_eval', action='store_true', default=False,
                         help='Enabling distributed evaluation (recommended during training for faster monitor')
-    parser.add_argument('--num_workers', default=10, type=int)
+    parser.add_argument('--num_workers', default=4, type=int)
     parser.add_argument('--pin_mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no_pin_mem', action='store_false', dest='pin_mem')
@@ -202,7 +205,8 @@ def main(args):
                       'This will slightly alter validation results as extra duplicate entries are added to achieve '
                       'equal num of samples per-process.')
             sampler_val = torch.utils.data.DistributedSampler(
-                dataset_val, num_replicas=num_tasks, rank=global_rank, shuffle=True)  # shuffle=True to reduce monitor bias
+                dataset_val, num_replicas=num_tasks, rank=global_rank,
+                shuffle=True)  # shuffle=True to reduce monitor bias
         else:
             sampler_val = torch.utils.data.SequentialSampler(dataset_val)
     else:
@@ -240,42 +244,62 @@ def main(args):
             mixup_alpha=args.mixup, cutmix_alpha=args.cutmix, cutmix_minmax=args.cutmix_minmax,
             prob=args.mixup_prob, switch_prob=args.mixup_switch_prob, mode=args.mixup_mode,
             label_smoothing=args.smoothing, num_classes=args.nb_classes)
-    
-    model = models_vit.__dict__[args.model](
-        num_classes=args.nb_classes,
-        drop_path_rate=args.drop_path,
-        global_pool=args.global_pool,
-    )
 
-    if args.finetune.lower() != "none" and not args.eval:
-        checkpoint = torch.load(args.finetune, map_location='cpu')
+    # if supervised pretrain
+    # only use resnet50
+    if args.mode == 'CNN':
+        model = models.__dict__[args.model]()
+        model.fc = nn.Linear(model.fc.in_features, args.nb_classes)
+    elif args.mode == 'CNN_super':
+        model = models.__dict__[args.model](pretrained=True)
+        model.fc = nn.Linear(model.fc.in_features, args.nb_classes)
+    elif args.mode == 'MOCO': # if self-supervised pretrain
+        model = models.__dict__[args.model]()
 
-        print("Load pre-trained checkpoint from: %s" % args.finetune)
-        if 'MAE' in args.mode:
-            checkpoint_model = checkpoint['model']
-        else:
-            assert 'ViT' in args.mode
-            checkpoint_model = checkpoint
-        state_dict = model.state_dict()
-        for k in ['head.weight', 'head.bias']:
-            if k in checkpoint_model and checkpoint_model[k].shape != state_dict[k].shape:
-                print(f"Removing key {k} from pretrained checkpoint")
-                del checkpoint_model[k]
+        checkpoint = torch.load('./ckpt/moco_v2_800ep_pretrain.pth.tar')
+        state_dict = checkpoint['state_dict']
+        for k in list(state_dict.keys()):
+            # retain only encoder_q up to before the embedding layer
+            if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc'):
+                # remove prefix
+                state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+            # delete renamed or unused k
+            del state_dict[k]
 
-        # interpolate position embedding
-        interpolate_pos_embed(model, checkpoint_model)
+        model.load_state_dict(checkpoint['state_dict'], strict=False)
+        model.fc = nn.Linear(model.fc.in_features, args.nb_classes)
+    else:
+        raise NotImplementedError('Check the mode to do pretrain please.')
 
-        # load pre-trained model
-        msg = model.load_state_dict(checkpoint_model, strict=False)
-        print(msg)
-
-        # if args.global_pool:
-        #     assert set(msg.missing_keys) == {'head.weight', 'head.bias', 'fc_norm.weight', 'fc_norm.bias'}
-        # else:
-        #     assert set(msg.missing_keys) == {'head.weight', 'head.bias'}
-
-        # manually initialize fc layer
-        trunc_normal_(model.head.weight, std=2e-5)
+    # if args.finetune.lower() != "none" and not args.eval:
+    #     checkpoint = torch.load(args.finetune, map_location='cpu')
+    #
+    #     print("Load pre-trained checkpoint from: %s" % args.finetune)
+    #     if 'MAE' in args.mode:
+    #         checkpoint_model = checkpoint['model']
+    #     else:
+    #         assert 'ViT' in args.mode
+    #         checkpoint_model = checkpoint
+    #     state_dict = model.state_dict()
+    #     for k in ['head.weight', 'head.bias']:
+    #         if k in checkpoint_model and checkpoint_model[k].shape != state_dict[k].shape:
+    #             print(f"Removing key {k} from pretrained checkpoint")
+    #             del checkpoint_model[k]
+    #
+    #     # interpolate position embedding
+    #     interpolate_pos_embed(model, checkpoint_model)
+    #
+    #     # load pre-trained model
+    #     msg = model.load_state_dict(checkpoint_model, strict=False)
+    #     print(msg)
+    #
+    #     # if args.global_pool:
+    #     #     assert set(msg.missing_keys) == {'head.weight', 'head.bias', 'fc_norm.weight', 'fc_norm.bias'}
+    #     # else:
+    #     #     assert set(msg.missing_keys) == {'head.weight', 'head.bias'}
+    #
+    #     # manually initialize fc layer
+    #     trunc_normal_(model.head.weight, std=2e-5)
 
     model.to(device)
 
@@ -286,7 +310,7 @@ def main(args):
     print('number of params (M): %.2f' % (n_parameters / 1.e6))
 
     eff_batch_size = args.batch_size * args.accum_iter * misc.get_world_size()
-    
+
     if args.lr is None:  # only base_lr is specified
         args.lr = args.blr * eff_batch_size / 256
 
@@ -301,11 +325,11 @@ def main(args):
         model_without_ddp = model.module
 
     # build optimizer with layer-wise lr decay (lrd)
-    param_groups = lrd.param_groups_lrd(model_without_ddp, args.weight_decay,
-        no_weight_decay_list=model_without_ddp.no_weight_decay(),
-        layer_decay=args.layer_decay
-    )
-    optimizer = torch.optim.AdamW(param_groups, lr=args.lr)
+    # param_groups = lrd.param_groups_lrd(model_without_ddp, args.weight_decay,
+    #                                     no_weight_decay_list=model_without_ddp.no_weight_decay(),
+    #                                     layer_decay=args.layer_decay
+    #                                     )
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
     loss_scaler = NativeScaler()
 
     if mixup_fn is not None:
@@ -360,9 +384,9 @@ def main(args):
                 log_writer.add_scalar('perf/test_loss', test_stats['loss'], epoch)
 
             log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
-                            **{f'test_{k}': v for k, v in test_stats.items()},
-                            'epoch': epoch,
-                            'n_parameters': n_parameters}
+                         **{f'test_{k}': v for k, v in test_stats.items()},
+                         'epoch': epoch,
+                         'n_parameters': n_parameters}
 
             if args.output_dir and misc.is_main_process():
                 if log_writer is not None:

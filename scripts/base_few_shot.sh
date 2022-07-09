@@ -2,8 +2,9 @@
 dataset=$1
 num_label=$2
 batch=$3
+gpu=$4
 
-export gpu=0,1,2,3
+
 export save_model_epoch=500
 
 for mode in "ViT" "ViT_IN" "MAE_IN" "MAE_CLEF"
@@ -33,12 +34,11 @@ do
     export eval_epoch=5
   fi
 
-  for dataset_split in "train20" "train40" "train60" "train80"
+  for dataset_split in "train1shot" "train5shot" "train10shot" "train20shot"
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
-    CUDA_VISIBLE_DEVICES=${gpu} python -m torch.distributed.launch --nproc_per_node=4 main_finetune.py \
-        --accum_iter 1 \
+    CUDA_VISIBLE_DEVICES=${gpu} python main_finetune.py \
         --batch_size ${batch} \
         --finetune ${PRETRAIN_CHKPT} \
         --epochs ${epoch} \
@@ -49,7 +49,6 @@ do
         --output_dir checkpoint/${name} \
         --log_dir checkpoint/${name}/"log" \
         --eval_epoch ${eval_epoch} \
-        --save_model_epoch ${save_model_epoch} \
-        --mode ${mode}
+        --save_model_epoch ${save_model_epoch}
   done
 done
