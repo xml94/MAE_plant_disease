@@ -249,7 +249,6 @@ def main(args):
 
     if args.finetune.lower() != "none" and not args.eval:
         checkpoint = torch.load(args.finetune, map_location='cpu')
-
         print("Load pre-trained checkpoint from: %s" % args.finetune)
         if 'MAE' in args.mode:
             checkpoint_model = checkpoint['model']

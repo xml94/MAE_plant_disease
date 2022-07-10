@@ -10,13 +10,11 @@ for mode in "MOCO" "CNN" "CNN_super"
 do
   if [ $mode = "CNN" ]
   then
-    PRETRAIN_CHKPT='None'
     export epoch=200
     export eval_epoch=10
   fi
   if [ $mode = "CNN_super" ]
   then
-    export PRETRAIN_CHKPT='./ckpt/L_16_imagenet1k.pth'
     export epoch=200
     export eval_epoch=10
   fi

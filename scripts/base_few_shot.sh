@@ -49,6 +49,7 @@ do
         --output_dir checkpoint/${name} \
         --log_dir checkpoint/${name}/"log" \
         --eval_epoch ${eval_epoch} \
-        --save_model_epoch ${save_model_epoch}
+        --save_model_epoch ${save_model_epoch} \
+        --mode ${mode}
   done
 done

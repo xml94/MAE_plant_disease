@@ -25,6 +25,7 @@ do
     --visualize_epoch 0 \
     --max_num 1 \
     --test_mode 'test' \
-    --nb_classes ${num_label}
+    --nb_classes ${num_label} \
+    --mode ${mode}
   done
 done
