@@ -50,7 +50,7 @@
 5357 Tomato___Tomato_Yellow_Leaf_Curl_Virus
 ```
 [name](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillage_all_img.png)
-![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillage_all_img.png)
+
 
 
 ### PlantDocCls
