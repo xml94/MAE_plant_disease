@@ -49,7 +49,7 @@
 373 Tomato___Tomato_mosaic_virus
 5357 Tomato___Tomato_Yellow_Leaf_Curl_Virus
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillageall_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillage_all_img.png)
@@ -120,7 +120,7 @@
   6 Tomato mold leaf
  11 Tomato Septoria leaf spot
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantDoc_clsall_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantDoc_cls_all_img.png)
@@ -138,7 +138,7 @@
   13158 3
    2577 4
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/cassava_all_labels.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/cassava_all_img.png)
@@ -155,7 +155,7 @@
     622 rust
     592 scab
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020all_img.png)
@@ -174,7 +174,7 @@
    1860 rust
    4826 scab
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2021_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2021_all_img.png)
@@ -196,7 +196,7 @@
     219 Sheath_Blight_Rot
     201 Stemborer
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Rice1462_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Rice1462_all_img.png)
@@ -213,7 +213,7 @@
    1600 BrownSpot
    1308 Tungro
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Rice2020_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Rice2020_all_img.png)
@@ -240,7 +240,7 @@
      20 Late blight
      32 powdery mildew
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/TaiwanTomato_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/TaiwanTomato_all_img.png)
@@ -262,7 +262,7 @@
     522 Tomato_P03_leaf_miner
     139 Tomato_P05_blueworms
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_tomato_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_tomato_all_img.png)
@@ -281,7 +281,7 @@
     522 Rose_R01
     522 Rose_R02
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_roseall_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_roseall_img.png)
@@ -298,7 +298,7 @@
     204 greening
      58 healthy
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/CitrusLeaf_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/CitrusLeaf_all_img.png)
@@ -314,7 +314,7 @@
     358 leaf_rust
     376 stem_rust
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/CGIAR_wheat_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/CGIAR_wheat_all_img.png)
@@ -338,7 +338,7 @@
     146 2
     120 3
 ```
-* Each label show 3 images randomly
+* show 3 images randomly for each label
   * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/ChineseStrawberry_all_label.txt)
 
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/ChineseStrawberry_all_img.png)
