@@ -1,0 +1,4 @@
+Label name from the second row to the last
+leaf_rust
+healthy_wheat
+stem_rust

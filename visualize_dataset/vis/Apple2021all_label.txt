@@ -1,0 +1,7 @@
+Label name from the second row to the last
+powdery_mildew
+rust
+scab
+frog_eye_leaf_spot
+complex
+healthy

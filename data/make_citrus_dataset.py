@@ -25,7 +25,7 @@ import subprocess
 
 ###### please rewrite the following directory
 abs_source_dir = "/data/Mingle/DATASETS/Citrus/"
-abs_target_dir = "/data/Mingle/DATASETS_after/CitrusLeaf/all/"
+abs_target_dir = "/data/Mingle/DATASETS_after/CitrusLeaf/raw/"
 
 ###### please do NOT change the following codes
 ###### But you can block some parts
@@ -36,7 +36,7 @@ np.random.seed(15)
 ####################################################################
 # step 1: copy all datasets
 ####################################################################
-temp_dir = abs_target_dir.replace('all', '')
+temp_dir = abs_target_dir.replace('raw', '')
 if osp.exists(temp_dir):
     shutil.rmtree(temp_dir)
 os.makedirs(temp_dir)
@@ -62,7 +62,7 @@ for i in range(len(train_ratio)):
     print(f"\nStarting: train: {train_ratio_}, val: {val_ratio_}, test: {test_ratio_}")
     all_ratio = train_ratio_ + val_ratio_ + test_ratio_
     file_dir = f"train{train_ratio_}"
-    target_dir = osp.join(source_dir.replace('all', ''), file_dir)
+    target_dir = osp.join(source_dir.replace('raw', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 
     # make label directory for train, val, test dataset
@@ -105,7 +105,7 @@ for i in range(len(few_shot)):
     print(f"\nStarting: train: {shots} shot, val: {val_ratio_}%, test: {test_ratio_}%")
     all_ratio = val_ratio_ + test_ratio_
     file_dir = f"train{shots}shot"
-    target_dir = osp.join(source_dir.replace('all', ''), file_dir)
+    target_dir = osp.join(source_dir.replace('raw', ''), file_dir)
     os.makedirs(target_dir, exist_ok=True)
 
     # make label directory for train, val, test dataset

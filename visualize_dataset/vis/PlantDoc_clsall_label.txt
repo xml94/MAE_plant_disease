@@ -1,0 +1,28 @@
+Label name from the second row to the last
+Tomato leaf
+grape leaf black rot
+Apple leaf
+Blueberry leaf
+Bell_pepper leaf
+Peach leaf
+Corn leaf blight
+Apple Scab Leaf
+Raspberry leaf
+Squash Powdery mildew leaf
+Potato leaf early blight
+Strawberry leaf
+Tomato Septoria leaf spot
+Corn rust leaf
+Tomato leaf late blight
+Cherry leaf
+Tomato mold leaf
+Apple rust leaf
+Tomato leaf yellow virus
+Corn Gray leaf spot
+Soyabean leaf
+Tomato Early blight leaf
+grape leaf
+Tomato leaf bacterial spot
+Tomato leaf mosaic virus
+Potato leaf late blight
+Bell_pepper leaf spot

@@ -1,0 +1,10 @@
+Label name from the second row to the last
+Tomato_D09_powdery_mildew
+Tomato_P03_leaf_miner
+Tomato_D01_ulcer
+Tomato_D05_septoria_leaf_spot
+Tomato_D08_Yellow_Leaf_Curl_Virus
+Tomato_D04_leaf_fungus
+Tomato_P05_blueworms
+Tomato_D07_deer_virus
+Tomato_Healthy

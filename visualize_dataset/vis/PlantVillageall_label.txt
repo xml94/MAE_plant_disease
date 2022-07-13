@@ -1,0 +1,39 @@
+Label name from the second row to the last
+Grape___healthy
+Pepper,_bell___Bacterial_spot
+Tomato___Tomato_mosaic_virus
+Apple___Black_rot
+Tomato___Late_blight
+Cherry_(including_sour)___Powdery_mildew
+Tomato___Early_blight
+Apple___Apple_scab
+Tomato___Bacterial_spot
+Soybean___healthy
+Tomato___Leaf_Mold
+Potato___healthy
+Tomato___healthy
+Squash___Powdery_mildew
+Orange___Haunglongbing_(Citrus_greening)
+Strawberry___Leaf_scorch
+Tomato___Spider_mites Two-spotted_spider_mite
+Cherry_(including_sour)___healthy
+Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
+Corn_(maize)___Northern_Leaf_Blight
+Potato___Early_blight
+Corn_(maize)___healthy
+Grape___Black_rot
+Raspberry___healthy
+Pepper,_bell___healthy
+Corn_(maize)___Common_rust_
+Tomato___Septoria_leaf_spot
+Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot
+Apple___Cedar_apple_rust
+Peach___Bacterial_spot
+Blueberry___healthy
+Potato___Late_blight
+Tomato___Tomato_Yellow_Leaf_Curl_Virus
+Tomato___Target_Spot
+Apple___healthy
+Peach___healthy
+Strawberry___healthy
+Grape___Esca_(Black_Measles)
