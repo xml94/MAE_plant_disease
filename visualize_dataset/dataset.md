@@ -49,7 +49,8 @@
 373 Tomato___Tomato_mosaic_virus
 5357 Tomato___Tomato_Yellow_Leaf_Curl_Virus
 ```
-[The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillageall_label.txt)
+* Each label show 3 images randomly
+  * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillageall_label.txt)
 ![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillage_all_img.png)
 
 
