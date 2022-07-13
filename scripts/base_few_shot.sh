@@ -12,14 +12,14 @@ do
   if [ $mode = "ViT" ]
   then
     PRETRAIN_CHKPT='None'
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "ViT_IN" ]
   then
     export PRETRAIN_CHKPT='./ckpt/L_16_imagenet1k.pth'
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "MAE_IN" ]
   then

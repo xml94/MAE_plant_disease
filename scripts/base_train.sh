@@ -6,19 +6,20 @@ batch=$3
 export gpu=0,1,2,3
 export save_model_epoch=500
 
-for mode in "ViT" "ViT_IN" "MAE_IN" "MAE_CLEF"
+#"MAE_IN" "MAE_CLEF"
+for mode in "ViT" "ViT_IN"
 do
   if [ $mode = "ViT" ]
   then
     PRETRAIN_CHKPT='None'
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "ViT_IN" ]
   then
     export PRETRAIN_CHKPT='./ckpt/L_16_imagenet1k.pth'
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "MAE_IN" ]
   then

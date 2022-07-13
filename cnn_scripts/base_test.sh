@@ -12,7 +12,7 @@ export test_epoch='best'
 
 for dataset_split in "train20" "train40" "train60" "train80"
 do
-  for mode in "CNN" "CNN_super"
+  for mode in "CNN" "CNN_super" "MOCO"
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"

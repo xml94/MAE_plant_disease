@@ -3,9 +3,6 @@ dataset=$1
 num_label=$2
 batch=$3
 
-export gpu=0,1,2,3
-export epoch=50
-export eval_epoch=5
 export test_epoch='best'
 
 for dataset_split in "train1shot" "train5shot" "train10shot" "train20shot"
@@ -14,7 +11,7 @@ do
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
-    CUDA_VISIBLE_DEVICES=1 python3 main_finetune.py \
+    CUDA_VISIBLE_DEVICES=0 python3 main_finetune.py \
     --eval \
     --resume "checkpoint/${name}/checkpoint-${test_epoch}.pth" \
     --batch_size ${batch} \

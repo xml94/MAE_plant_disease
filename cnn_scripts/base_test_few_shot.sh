@@ -4,8 +4,6 @@ num_label=$2
 batch=$3
 
 export gpu=1
-export epoch=50
-export eval_epoch=5
 export test_epoch='best'
 
 for dataset_split in "train1shot" "train5shot" "train10shot" "train20shot"

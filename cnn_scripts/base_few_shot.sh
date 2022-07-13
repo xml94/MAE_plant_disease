@@ -6,17 +6,18 @@ gpu=$4
 
 export save_model_epoch=500
 
-for mode in "MOCO" "CNN" "CNN_super"
+#"MOCO"
+for mode in "CNN" "CNN_super"
 do
   if [ $mode = "CNN" ]
   then
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "CNN_super" ]
   then
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "MOCO" ]
   then

@@ -3,21 +3,20 @@ dataset=$1
 num_label=$2
 batch=$3
 
-#export gpu=0,1,2,3
-export gpu=0,1
+export gpu=0,1,2,3
 export save_model_epoch=500
 
 for mode in "MOCO" "CNN" "CNN_super"
 do
   if [ $mode = "CNN" ]
   then
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "CNN_super" ]
   then
-    export epoch=200
-    export eval_epoch=10
+    export epoch=50
+    export eval_epoch=5
   fi
   if [ $mode = "MOCO" ]
   then
@@ -29,7 +28,7 @@ do
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
-    CUDA_VISIBLE_DEVICES=${gpu} python -m torch.distributed.launch --nproc_per_node=2 cnn_finetune.py \
+    CUDA_VISIBLE_DEVICES=${gpu} python -m torch.distributed.launch --nproc_per_node=4 cnn_finetune.py \
         --accum_iter 2 \
         --batch_size ${batch} \
         --epochs ${epoch} \
