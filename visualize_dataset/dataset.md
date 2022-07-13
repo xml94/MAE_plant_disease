@@ -49,7 +49,7 @@
 373 Tomato___Tomato_mosaic_virus
 5357 Tomato___Tomato_Yellow_Leaf_Curl_Virus
 ```
-[![name](link to image on GH)](link to your URL)
+[![name](link to image on GH)](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/PlantVillage_all_img.png)
 
 
 ### PlantDocCls
