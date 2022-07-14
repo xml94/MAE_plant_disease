@@ -25,7 +25,7 @@ Refer to [visualize_dataset/dataset.md](https://github.com/xml94/MAE_plant_disea
 ### Prepare the dataset for this project
 You can download the original dataset used their links
 
-We propose part of the datasets [Google Driver](), include:
+We propose part of the datasets [Google Driver](https://drive.google.com/drive/folders/1TdCgzV4-Bau2fkHZjHKH38LV9kB2Dhbn?usp=sharing), include:
 ```angular2html
 6.9M    ./TaiwanTomato
 957M    ./PlantDoc_cls

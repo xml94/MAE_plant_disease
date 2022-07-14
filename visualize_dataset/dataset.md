@@ -56,8 +56,8 @@
 
 
 ### PlantDocCls
-* 13 plants
-* 28 classes
+* 14 plants
+* 27 classes
 * 2,579 images
 * collect from internet
 * numer of images in training dataset and testing dataset
@@ -156,9 +156,9 @@
     592 scab
 ```
 * show 3 images randomly for each label
-  * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020all_label.txt)
+  * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020_all_label.txt)
 
-![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020all_img.png)
+![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/Apple2020_all_img.png)
 
 
 ### Apple2021

@@ -12,8 +12,8 @@ export code="./scripts/base_test.sh"
 #sh ${code} "CitrusLeaf" 4 16
 #sh ${code} "IVADL_rose" 6 32
 #sh ${code} "IVADL_tomato" 9 32
-sh ${code} "PlantDoc_cls" 27 32
+#sh ${code} "PlantDoc_cls" 27 32
 #sh ${code} "PlantVillage" 38 32
 #sh ${code} "Rice1462" 9 32
 #sh ${code} "Rice2020" 4 32
-#sh ${code} "TaiwanTomato" 6 16
+sh ${code} "TaiwanTomato" 6 16
