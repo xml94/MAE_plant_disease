@@ -8,12 +8,11 @@ export test_epoch='best'
 
 for dataset_split in "train20" "train40" "train60" "train80"
 do
-#  "MAE_IN" "MAE_CLEF"
-  for mode in "ViT" "ViT_IN"
+#  "ViT" "ViT_IN"
+  for mode in "MAE_IN" "MAE_CLEF"
   do
     export name="${dataset}_${dataset_split}_${mode}"
     export IMAGENET_DIR="./../datasets/${dataset}/${dataset_split}"
-#    -m torch.distributed.launch --nproc_per_node=4
     CUDA_VISIBLE_DEVICES=${gpu} python3 main_finetune.py \
     --eval \
     --resume "checkpoint/${name}/checkpoint-${test_epoch}.pth" \

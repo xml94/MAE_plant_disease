@@ -6,8 +6,8 @@ gpu=$4
 
 export save_model_epoch=500
 
-#"MOCO"
-for mode in "CNN" "CNN_super"
+#
+for mode in "CNN" "CNN_super" "MOCO"
 do
   if [ $mode = "CNN" ]
   then

@@ -282,9 +282,9 @@
     522 Rose_R02
 ```
 * show 3 images randomly for each label
-  * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_roseall_label.txt)
+  * [The label name for the below image](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_rose_all_label.txt)
 
-![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_roseall_img.png)
+![PlantVillageImage](https://github.com/xml94/MAE_plant_disease/blob/main/visualize_dataset/vis/IVADL_rose_all_img.png)
 
 
 ### CitrusLeaf

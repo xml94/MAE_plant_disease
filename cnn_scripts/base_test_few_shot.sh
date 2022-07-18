@@ -3,7 +3,7 @@ dataset=$1
 num_label=$2
 batch=$3
 
-export gpu=1
+export gpu=0
 export test_epoch='best'
 
 for dataset_split in "train1shot" "train5shot" "train10shot" "train20shot"
