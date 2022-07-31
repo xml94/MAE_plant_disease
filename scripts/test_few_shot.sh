@@ -5,7 +5,7 @@ export code="./scripts/base_test_few_shot.sh"
 #batch=$3
 
 #sh ${code} "Apple2020" 4 4
-sh ${code} "Apple2021" 6 6
+#sh ${code} "Apple2021" 6 6
 #sh ${code} "cassava" 5 4
 #sh ${code} "CGIAR_wheat" 3 2
 #sh ${code} "ChineseStrawberry" 4 4
