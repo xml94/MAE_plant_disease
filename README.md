@@ -31,7 +31,7 @@ To visualize the images for each datataset and each class
 * use ```visualize_dataset/vis_dset.sh```
 
 ## PlantCLEF2022
-* You can download the pretrained model [here](https://github.com/xml94/PlantCLEF2022) and see [the corresponding paper]()
+* You can download the pretrained model [here](https://github.com/xml94/PlantCLEF2022) and see [the paper](http://www.dei.unipd.it/~ferro/CLEF-WN-Drafts/CLEF2022/paper-179.pdf)
 
 
 ## Train and test
