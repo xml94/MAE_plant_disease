@@ -42,3 +42,16 @@ To visualize the images for each datataset and each class
 
 ## Cite our paper
 * [Published paper link](https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981/full)
+* bib:
+```
+@ARTICLE{xutransfer,
+AUTHOR={Xu, Mingle and Yoon, Sook and Jeong, Yongchae and Park, Dong Sun},
+TITLE={Transfer learning for versatile plant disease recognition with limited data},
+JOURNAL={Frontiers in Plant Science},
+VOLUME={13},
+YEAR={2022},
+URL={https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981},
+DOI={10.3389/fpls.2022.1010981},
+ISSN={1664-462X},
+}
+```
