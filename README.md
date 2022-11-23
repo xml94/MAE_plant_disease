@@ -42,7 +42,7 @@ To visualize the images for each datataset and each class
 
 ## Cite our paper
 * [Published paper link](https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981/full)
-* bib:
+* BibTex:
 ```
 @ARTICLE{xutransfer,
 AUTHOR={Xu, Mingle and Yoon, Sook and Jeong, Yongchae and Park, Dong Sun},
