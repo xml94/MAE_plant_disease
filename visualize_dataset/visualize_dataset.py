@@ -96,3 +96,4 @@ with open(label_name, 'w') as file:
     file.writelines(label)
 
 print(f"Done for {parser.src_dir}")
+print(f"Please check the images in {osp.join(parser.base_dir, 'vis')}")

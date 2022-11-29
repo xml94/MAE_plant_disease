@@ -1,5 +1,5 @@
 export code='data/make_train_val_test.py'
-export base_dir="/home/multiai6/Mingle/datasets"
+export base_dir="/data/Mingle/DATASETS"
 
 
 #########################################################
@@ -16,6 +16,8 @@ python ${code} --base_dir ${base_dir} --src_dir "Apple2020_back" --test 0
 #python ${code} --base_dir ${base_dir} --src_dir "PlantVillage_back" --test 0
 #python ${code} --base_dir ${base_dir} --src_dir "Rice1462_back" --test 0
 #python ${code} --base_dir ${base_dir} --src_dir "Rice2020_back" --test 0
+
+#python ${code} --base_dir ${base_dir} --src_dir "CottonWeedID15" --test 0
 
 
 #########################################################

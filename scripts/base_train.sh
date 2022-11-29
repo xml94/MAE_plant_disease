@@ -6,8 +6,8 @@ batch=$3
 export gpu=0,1,2,3
 export save_model_epoch=500
 
-# "ViT" "ViT_IN"
-for mode in "MAE_IN" "MAE_CLEF"
+# "ViT" "ViT_IN" "MAE_IN" "MAE_CLEF"
+for mode in "ViT" "ViT_IN"
 do
   if [ $mode = "ViT" ]
   then

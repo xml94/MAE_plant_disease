@@ -2,30 +2,40 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import os.path as osp
+import os
 import argparse
 plt.rcParams["savefig.bbox"] = 'tight'
 matplotlib.rcParams['savefig.dpi'] = 1200
 
 
-def read_acc(file_name):
+def read_val(file_name, mode='loss'):
     with open(file_name) as file:
         meta_data = file.readlines()
-        val_acc  = []
+        val  = []
         for data in meta_data:
-            val_acc.append(np.array(data.split(" ")[7].replace(',', ''), dtype=float))
-        val_acc = np.array(val_acc)
-    return val_acc
+            if mode == 'loss':
+                val.append(np.array(data.split(" ")[5].replace(',', ''), dtype=float))
+            else:
+                assert mode == 'acc'
+                val.append(np.array(data.split(" ")[7].replace(',', ''), dtype=float))
+        val = np.array(val)
+    return val
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dset', type=str, required=True,
-                    help='the dataset')
+                    help='the dataset name')
 parser.add_argument('--vis_dir', type=str, default='analysis_results', help='the director to save images')
+parser.add_argument('--mode', type=str, default='acc', help='val loss or val acc',
+                    choices={'loss', 'acc'})
 parser.add_argument('--base', type=str, default='/data/Mingle/checkpoints/', help='the base directory to save the files')
+parser.add_argument('--title', type=int, default=0, help="if make title with dataset name")
 parser = parser.parse_args()
 
 base_folder = parser.base
 dset = parser.dset
+mode = parser.mode
+title = parser.title
 
 dset_name ={
 'Apple2020': 'Apple2020',
@@ -40,7 +50,8 @@ dset_name ={
 'PlantVillage': "PlantVillage",
 'Rice1462': "Rice1426",
 'Rice2020': "Rice5932",
-'TaiwanTomato': "TaiwanTomato"
+'TaiwanTomato': "TaiwanTomato",
+'CottonWeedID15': "CottonWeedID15"
 }
 
 
@@ -63,34 +74,50 @@ for num, ax in enumerate(fig.axes):
         src_dir = osp.join(base_folder, 'few_shot')
 
     # compare the convergence speed in validation dataset.
-    acc = []
+    val = []
     for method in methods:
         file_name = osp.join(src_dir, dset + f"_{dset_mode}_{method}", "log.txt")
-        acc.append(read_acc(file_name))
+        val.append(read_val(file_name, mode=mode))
 
-    for i in range(len(acc)):
-        ax.plot(range(1,47,5), acc[i], markers[i], color = colors[i], label=legend[i])
+    for i in range(len(val)):
+        ax.plot(range(1,47,5), val[i], markers[i], color = colors[i], label=legend[i])
 
+    # y label
     if num == 0 or num == 4:
-        ax.set_ylabel('Val acc')
+        if mode == "loss":
+            ax.set_ylabel('Val loss')
+        else:
+            ax.set_ylabel('Val acc')
     if num >= 4:
         ax.set_xlabel('Epoch')
-    # if num < 4:
-    #     ax.set_xticks([])
-    # else:
-    #     ax.set_xticks(np.arange(0, 46, 10))
-    if num == 0 or num == 4:
-        ax.set_yticks(np.arange(0, 101, 20))
-    else:
-        ax.set_yticks([])
-    ax.set_title(titles[num])
-    ax.set_xticks(np.arange(0, 51, 10))
 
-lines, labels = fig.axes[-1].get_legend_handles_labels()
-fig.legend(lines, labels, loc='lower center', ncol=7, bbox_to_anchor=(0.5,0.0), borderaxespad=0)
-# plt.legend(bbox_to_anchor=(1.04,1), borderaxespad=0)
-fig.suptitle(str(dset_name[dset]))
+    # y tick
+    if mode == 'acc':
+        if num == 0 or num == 4:
+            ax.set_yticks(np.arange(0, 101, 20))
+        else:
+            ax.set_yticks([])
+    else:
+        # ax.set_ylim([0, 4])
+        pass
+
+    # other
+    ax.set_title(titles[num])
+    ax.set_xticks(np.arange(0, 46, 10))
+
+if mode == 'loss':
+    lines, labels = fig.axes[-1].get_legend_handles_labels()
+    fig.legend(lines, labels, loc='lower center', ncol=7, bbox_to_anchor=(0.5,0.0), borderaxespad=0)
+    # plt.legend(bbox_to_anchor=(1.04,1), borderaxespad=0)
+if title:
+    fig.suptitle(str(dset_name[dset]))
 
 plt.gcf().set_size_inches(10, 6)
 # plt.show()
-plt.savefig(osp.join(parser.vis_dir, f"{dset}.svg"))
+
+if not osp.exists(parser.vis_dir):
+    os.makedirs(parser.vis_dir)
+    print(f"Make directory {parser.vis_dir}")
+plt.savefig(osp.join(parser.vis_dir, f"{dset}_{mode}.svg"))
+
+print(f"Successfully for {dset} with {mode} mode.")
