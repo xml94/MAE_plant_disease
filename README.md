@@ -39,3 +39,19 @@ To visualize the images for each datataset and each class
 * For CNN-based, few-shot case see ```/cnn_scripts/few_shot.sh``` and ```/cnn_scripts/test_few_shot.sh```
 * For ViT-based, see ```/scripts/train.sh``` and ```/scripts/test.sh```
 * For ViT-based, few-shot case see ```/scripts/few_shot.sh``` and ```/scripts/test_few_shot.sh```
+
+## Cite our paper
+* [Published paper link](https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981/full)
+* BibTex:
+```
+@ARTICLE{xutransfer,
+AUTHOR={Xu, Mingle and Yoon, Sook and Jeong, Yongchae and Park, Dong Sun},
+TITLE={Transfer learning for versatile plant disease recognition with limited data},
+JOURNAL={Frontiers in Plant Science},
+VOLUME={13},
+YEAR={2022},
+URL={https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981},
+DOI={10.3389/fpls.2022.1010981},
+ISSN={1664-462X},
+}
+```
