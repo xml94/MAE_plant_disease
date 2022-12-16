@@ -44,28 +44,23 @@ from tqdm import tqdm
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--base_dir', type=str, default='/data/Mingle/DATASETS',
-                    help='the directory to have all the plant disease dataset')
-parser.add_argument('--src_dir', type=str, required=True, help='one plant disease dataset with raw dataset')
-parser.add_argument('--test', type=int, default=0, help='if test dataset exist in the original')
+parser.add_argument('--dset_name', type=str, required=True, help='a dataset with raw dataset')
+parser.add_argument('--with_test', action='store_true', help='testing dataset exist in the original dataset')
 parser = parser.parse_args()
-
-base_dir = parser.base_dir
-src_dir = parser.src_dir
-test = parser.test
-tgt_path = osp.join(base_dir, src_dir)
-abs_src_dir = osp.join(base_dir, src_dir, 'raw')
+src_dir = parser.dset_name
+with_test = parser.with_test
+tgt_path = src_dir
+abs_src_dir = osp.join(src_dir, 'raw')
 
 ####################################################################
 # use seed to reproduce the data split
 ####################################################################
-np.random.seed(15)
+random_seed = 15
 # because 15th is my wife's and my son's birthday. Yes, same day!
 
-if not test:
-    label_names = os.listdir(abs_src_dir)
+if not with_test:
+    label_names = os.listdir(osp.join(abs_src_dir, 'train'))
     np.random.seed(15)
-
     ####################################################################
     # step 1: make train, val dataset for different ratio
     ####################################################################
@@ -95,8 +90,7 @@ if not test:
             src_label_dir = osp.join(abs_src_dir, str(label))
             img_list = sorted(os.listdir(src_label_dir))
             num_img = int(len(img_list) * all_ratio / 100.0)
-            # np.random.seed(15)
-            # because 15th is my wife's and my son's birthday. Yes, same day!
+            np.random.seed(15)
             random_perm = np.random.permutation(num_img)
             for j, num in enumerate(random_perm):
                 if j <= num_img * train_ratio_ / all_ratio:
@@ -138,6 +132,7 @@ if not test:
             src_label_dir = osp.join(abs_src_dir, str(label))
             img_list = sorted(os.listdir(src_label_dir))
             num_img = int(len(img_list) * all_ratio / 100.0)
+            np.random.seed(random_seed)
             random_perm = np.random.permutation(num_img + shots)
             for j, num in enumerate(random_perm):
                 if j < shots:
@@ -182,8 +177,7 @@ else:
             src_label_dir = osp.join(abs_src_dir, str(label))
             img_list = sorted(os.listdir(src_label_dir))
             num_img = int(len(img_list) * all_ratio / 100.0)
-            # np.random.seed(15)
-            # because 15th is my wife's and my son's birthday. Yes, same day!
+            np.random.seed(random_seed)
             random_perm = np.random.permutation(num_img)
             for j, num in enumerate(random_perm):
                 if j <= num_img * train_ratio_ / all_ratio:
@@ -223,6 +217,7 @@ else:
             src_label_dir = osp.join(abs_src_dir, str(label))
             img_list = sorted(os.listdir(src_label_dir))
             num_img = int(len(img_list) * all_ratio / 100.0)
+            np.random.seed(random_seed)
             random_perm = np.random.permutation(num_img + shots)
             for j, num in enumerate(random_perm):
                 if j < shots:

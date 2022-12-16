@@ -1,7 +1,7 @@
 ##########################
 #  paddy rice
 ##########################
-export IMAGENET_DIR="/home/oem/Mingle/datasets/paddy-disease-classification/test"
+export IMAGENET_DIR="/home/oem/Mingle/datasets/paddy-disease-classification/raw"
 export name="paddy_rice_PlantCLEF_ViT"
 export epoch=best
 CUDA_VISIBLE_DEVICES=0 python3 main_finetune.py \
