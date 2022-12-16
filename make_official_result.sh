@@ -1,0 +1,1 @@
+python make_official_result.py --epoch 1 --mode 'sorted' --max_num 1
