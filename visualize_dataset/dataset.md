@@ -3,6 +3,9 @@
 * number of classes
 * number of images for each class
 * three images for each class
+```
+find . -type f | cut -d/ -f2 | sort | uniq -c
+```
 
 ### PlantVillage
 * 14 plants
