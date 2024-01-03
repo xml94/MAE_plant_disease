@@ -55,4 +55,17 @@ URL={https://www.frontiersin.org/articles/10.3389/fpls.2022.1010981},
 DOI={10.3389/fpls.2022.1010981},
 ISSN={1664-462X},
 }
+@inproceedings{xu2022transfer,
+  title={Transfer learning with self-supervised vision transformer for large-scale plant identification},
+  author={Xu, Mingle and Yoon, Sook and Jeong, Yongchae and Lee, Jaesu and Park, Dong Sun},
+  booktitle={International conference of the cross-language evaluation forum for European languages (Springer;)},
+  pages={2253--2261},
+  year={2022}
+}
+@article{xu2023plantclef2023,
+  title={Plantclef2023: A bigger training dataset contributes more than advanced pretraining methods for plant identification},
+  author={Xu, Mingle and Yoon, Sook and Wu, Chenmou and Baek, Jeonghyun and Park, Dong Sun},
+  journal={Working Notes of CLEF},
+  year={2023}
+}
 ```
