@@ -1,4 +1,5 @@
 ## Dataset
+**We are collecting public plant disease datasets in [PPDRD project](https://github.com/xml94/PPDRD).** 
 
 ### Info of original plant related datasets
 
