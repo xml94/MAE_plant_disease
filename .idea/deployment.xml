@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="51" remoteFilesAllowedToDisappearOnAutoupload="false" showAutoUploadSettingsWarning="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="231" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false" showAutoUploadSettingsWarning="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
-      <paths name="50">
+      <paths name="231">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/oem/Mingle/versatile_plant_disease_recognition/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="51">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/home/oem/Mingle/MAE" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="6">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/home/multiai6/Mingle/MAE" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/oem/Mingle/MAE_plant_disease" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
